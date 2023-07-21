@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"/>
         <TextView
-            android:id="@+id/tv_username"
+            android:id="@+id/tv_nama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="nama"
@@ -21,17 +21,52 @@
             android:maxLines="2"
             />
         <TextView
-            android:id="@+id/tv_password"
+            android:id="@+id/tv_alamat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="password"
+            android:text="alamat"
             android:textSize="18sp"
             />
         <TextView
-            android:id="@+id/tv_role"
+            android:id="@+id/tv_telepon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="role"
+            android:text="telepon"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/tv_panjang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="panjang"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/tv_lebar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lebar"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/tv_bahan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bahan"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/tv_ketebalan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ketebalan"
+            android:textSize="18sp"
+            />
+    <TextView
+            android:id="@+id/tv_desain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="desain"
             android:textSize="18sp"
             />
 

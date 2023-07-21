@@ -1,7 +1,9 @@
 package com.hamtz.bengkellas.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +56,12 @@ class MainActivity : AppCompatActivity() {
 //            ?.enqueue(object:Call<List<DataModel>>,Callback<List<DataModel>>{
 //
 //        })
+
+        val button2=findViewById<Button>(com.hamtz.bengkellas.R.id.button2)
+        button2.setOnClickListener {
+            val intent = Intent(this, TambahActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

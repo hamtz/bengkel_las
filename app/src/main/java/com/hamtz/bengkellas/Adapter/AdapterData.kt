@@ -18,9 +18,14 @@ class AdapterData (
   class HolderData(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val tvId: TextView = itemView.findViewById(R.id.tv_id)
-    val tvUsername: TextView = itemView.findViewById(R.id.tv_username)
-    val tvPassword: TextView = itemView.findViewById(R.id.tv_password)
-    val tvRole: TextView = itemView.findViewById(R.id.tv_role)
+    val tvNama: TextView = itemView.findViewById(R.id.tv_nama)
+    val tvAlamat: TextView = itemView.findViewById(R.id.tv_alamat)
+    val tvTelepon: TextView = itemView.findViewById(R.id.tv_telepon)
+    val tvPanjang: TextView = itemView.findViewById(R.id.tv_panjang)
+    val tvLebar: TextView = itemView.findViewById(R.id.tv_lebar)
+    val tvBahan: TextView = itemView.findViewById(R.id.tv_bahan)
+    val tvKetebalan: TextView = itemView.findViewById(R.id.tv_ketebalan)
+    val tvDesain: TextView = itemView.findViewById(R.id.tv_desain)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderData {
@@ -36,9 +41,15 @@ class AdapterData (
     val dm = listData[position]
 
     holder.tvId.text = dm.id.toString()
-    holder.tvUsername.text = dm.username
-    holder.tvPassword.text = dm.password
-    holder.tvRole.text = dm.role.toString()
+    holder.tvNama.text = dm.nama
+    holder.tvAlamat.text = dm.alamat
+    holder.tvTelepon.text = dm.telepon.toString()
+    holder.tvPanjang.text = dm.panjang.toString()
+    holder.tvLebar.text = dm.lebar.toString()
+    holder.tvBahan.text = dm.bahan
+    holder.tvKetebalan.text = dm.ketebalan
+    holder.tvDesain.text = dm.kode_desain
+
 
   }
 }

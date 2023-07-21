@@ -5,23 +5,38 @@ import android.os.Parcelable
 
 data class DataModel(
     var id: Int,
-    var username:String,
-    var password:String,
-    var role:Int,
+    var nama: String,
+    var alamat:String,
+    var telepon:Int,
+    var panjang:Int,
+    var lebar:Int,
+    var bahan:String,
+    var ketebalan:String,
+    var kode_desain:String,
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readInt()
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
-        parcel.writeString(username)
-        parcel.writeString(password)
-        parcel.writeInt(role)
+        parcel.writeString(nama)
+        parcel.writeString(alamat)
+        parcel.writeString(telepon.toString())
+        parcel.writeString(panjang.toString())
+        parcel.writeString(lebar.toString())
+        parcel.writeString(bahan)
+        parcel.writeString(ketebalan)
+        parcel.writeString(kode_desain)
     }
 
     override fun describeContents(): Int {
@@ -38,5 +53,3 @@ data class DataModel(
         }
     }
 }
-
-

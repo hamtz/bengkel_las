@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Bengkel Las</string>
+    <string name="selected_item">Selected item:</string>
+
+
+    <string-array name="List_Bahan">
+        <item>Besi </item>
+        <item>Baja Ringan</item>
+    </string-array>
+    <string-array name="List_Tebal">
+        <item>Sedang </item>
+        <item>Tebal</item>
+    </string-array>
+    <string-array name="List_Desain">
+        <item>DS 1</item>
+        <item>DS 2</item>
+    </string-array>
 </resources>
