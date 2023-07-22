@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Bengkel Las</string>
     <string name="selected_item">Selected item:</string>
+    <string name="deskripsi_app">Bengkel Las Asri adalah aplikasi pemesanan berbagai produk yang menggunakan teknik las seperti pagar dan kanopi. Aplikasi ini dibuat dengan tujuan memudahkan pemesanan jasa Bengkel Las Asri.</string>
 
 
     <string-array name="List_Bahan">
