@@ -7,7 +7,7 @@ data class DataModel(
     var id: Int,
     var nama: String,
     var alamat:String,
-    var telepon:Int,
+    var telepon:String,
     var panjang:Int,
     var lebar:Int,
     var bahan:String,
@@ -18,7 +18,7 @@ data class DataModel(
         parcel.readInt(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readInt(),
+        parcel.readString().toString(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readString().toString(),
@@ -31,7 +31,7 @@ data class DataModel(
         parcel.writeInt(id)
         parcel.writeString(nama)
         parcel.writeString(alamat)
-        parcel.writeString(telepon.toString())
+        parcel.writeString(telepon)
         parcel.writeString(panjang.toString())
         parcel.writeString(lebar.toString())
         parcel.writeString(bahan)

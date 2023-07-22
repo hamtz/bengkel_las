@@ -12,7 +12,11 @@
         <item>Tebal</item>
     </string-array>
     <string-array name="List_Desain">
-        <item>DS 1</item>
-        <item>DS 2</item>
+        <item>Pagar Dorong DS 1</item>
+        <item>Pagar Dorong DS 2</item>
+        <item>Kanopi DS 1</item>
+        <item>Kanopi DS 2</item>
+        <item>Pagar Mati DS 1</item>
+        <item>Pagar Mati DS 2</item>
     </string-array>
 </resources>

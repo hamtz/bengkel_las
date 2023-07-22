@@ -22,14 +22,6 @@ class TambahActivity : AppCompatActivity() {
     private var bahan: String = ""
     private var ketebalan: String = ""
     private var kode_desain: String = ""
-//
-//    lateinit var alamat: TextView
-//    lateinit var telepon: TextView
-//    lateinit var panjang: TextView
-//    lateinit var lebar: TextView
-//    lateinit var bahan: Spinner
-//    lateinit var ketebalan: Spinner
-//    lateinit var kode_desain: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,6 +150,7 @@ class TambahActivity : AppCompatActivity() {
 //               etLebar.error="isi lebar (cm)"
             } else {
                 createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain)
+                finish()
 //               Toast.makeText(this,(nama+" x " +alamat+" x " + telepon +" x "+ panjang +" x "+ lebar+" x " + bahan +" x "+ketebalan +" x "+ kode_desain ),Toast.LENGTH_LONG).show()
 //               Toast.makeText(this,nama,Toast.LENGTH_LONG).show()
 
@@ -190,7 +183,7 @@ class TambahActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val kode = response.body()?.kode
                 val pesan = response.body()?.pesan
-                Toast.makeText(this@TambahActivity, "Kode :$kode| Pesan : $pesan", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TambahActivity, "Pesan : $pesan", Toast.LENGTH_LONG).show()
             }
 
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {

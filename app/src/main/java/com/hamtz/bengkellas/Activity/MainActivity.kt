@@ -22,33 +22,33 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var rvData: RecyclerView
-    lateinit var listData: ArrayList<DataModel>
-    lateinit var srlData: SwipeRefreshLayout
-    lateinit var pbData:ProgressBar
+//    lateinit var rvData: RecyclerView
+//    lateinit var listData: ArrayList<DataModel>
+//    lateinit var srlData: SwipeRefreshLayout
+//    lateinit var pbData:ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.hamtz.bengkellas.R.layout.activity_main)
 
-        srlData= findViewById(com.hamtz.bengkellas.R.id.srl_data)
-        pbData=findViewById(com.hamtz.bengkellas.R.id.pb_data)
+//        srlData= findViewById(com.hamtz.bengkellas.R.id.srl_data)
+//        pbData=findViewById(com.hamtz.bengkellas.R.id.pb_data)
+//
+//
+//        rvData = findViewById(com.hamtz.bengkellas.R.id.rv_data)
+//        rvData.layoutManager = LinearLayoutManager(this)
+//        rvData.setHasFixedSize(true)
+
+//        listData = ArrayList()
 
 
-        rvData = findViewById(com.hamtz.bengkellas.R.id.rv_data)
-        rvData.layoutManager = LinearLayoutManager(this)
-        rvData.setHasFixedSize(true)
+//        srlData.setOnRefreshListener {
+//            srlData.isRefreshing = true
+//            retrieveData()
+//            srlData.isRefreshing = false
+//        }
 
-        listData = ArrayList()
-//        retrieveData()
-
-        srlData.setOnRefreshListener {
-            srlData.isRefreshing = true
-            retrieveData()
-            srlData.isRefreshing = false
-        }
-
-
+//<------bukan------------->
 //        val adapter = AdapterData(listData,this)
 //        val lmData = LinearLayoutManager(this)
 
@@ -56,55 +56,67 @@ class MainActivity : AppCompatActivity() {
 //            ?.enqueue(object:Call<List<DataModel>>,Callback<List<DataModel>>{
 //
 //        })
+//<<-------bukan----------->
 
-        val button2=findViewById<Button>(com.hamtz.bengkellas.R.id.button2)
-        button2.setOnClickListener {
+
+        val btProduk=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_produk)
+        btProduk.setOnClickListener {
+            val intent = Intent(this, ProdukActivity::class.java)
+            startActivity(intent)
+        }
+        val btOrder=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_order)
+        btOrder.setOnClickListener {
             val intent = Intent(this, TambahActivity::class.java)
+            startActivity(intent)
+        }
+        val btPesanan=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_pesanan)
+        btPesanan.setOnClickListener {
+            val intent = Intent(this, PesananActivity::class.java)
             startActivity(intent)
         }
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        retrieveData()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        retrieveData()
+//    }
 
 
-    private fun retrieveData(){
-        pbData.setVisibility(View.VISIBLE)
-        val ardData: APIRequestData = RetroServer.konekRetrofit()!!.create(APIRequestData::class.java)
-        val tampilData: Call<ResponseModel> = ardData.ardRetrieveData()
-
-        tampilData.enqueue(object : Callback<ResponseModel> {
-            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
-                val kode = response.body()?.kode
-                val pesan = response.body()?.pesan
-
-                Toast.makeText(this@MainActivity, "Kode :$kode| Pesan : $pesan", Toast.LENGTH_LONG).show()
-                val responseData = response.body()?.data
-
-                listData.clear()
-                responseData?.let {
-                    listData.addAll(it)
-                    var adData = AdapterData(this@MainActivity,listData)
-                    rvData.adapter = adData
-                    adData.notifyDataSetChanged()
-
-                    pbData.setVisibility(View.INVISIBLE)
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
-                val pesan = "gagal menghubungi server " + t.message
-                Toast.makeText(this@MainActivity, pesan, Toast.LENGTH_LONG).show()
-                pbData.setVisibility(View.INVISIBLE)
-            }
-        })
-
-
-
-    }
+//    private fun retrieveData(){
+//        pbData.setVisibility(View.VISIBLE)
+//        val ardData: APIRequestData = RetroServer.konekRetrofit()!!.create(APIRequestData::class.java)
+//        val tampilData: Call<ResponseModel> = ardData.ardRetrieveData()
+//
+//        tampilData.enqueue(object : Callback<ResponseModel> {
+//            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+//                val kode = response.body()?.kode
+//                val pesan = response.body()?.pesan
+//
+//                Toast.makeText(this@MainActivity, "Kode :$kode| Pesan : $pesan", Toast.LENGTH_LONG).show()
+//                val responseData = response.body()?.data
+//
+//                listData.clear()
+//                responseData?.let {
+//                    listData.addAll(it)
+//                    var adData = AdapterData(this@MainActivity,listData)
+//                    rvData.adapter = adData
+//                    adData.notifyDataSetChanged()
+//
+//                    pbData.setVisibility(View.INVISIBLE)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+//                val pesan = "gagal menghubungi server " + t.message
+//                Toast.makeText(this@MainActivity, pesan, Toast.LENGTH_LONG).show()
+//                pbData.setVisibility(View.INVISIBLE)
+//            }
+//        })
+//
+//
+//
+//    }
 
 
 
