@@ -121,6 +121,10 @@ class TambahActivity : AppCompatActivity() {
                 }
             }
         }
+        val btBack=findViewById<ImageButton>(R.id.bt_back)
+        btBack.setOnClickListener {
+            finish()
+        }
 
         btPesan.setOnClickListener {
             nama = etNama.text.toString()

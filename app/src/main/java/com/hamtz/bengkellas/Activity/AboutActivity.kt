@@ -3,6 +3,7 @@ package com.hamtz.bengkellas.Activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.hamtz.bengkellas.R
@@ -15,6 +16,11 @@ class AboutActivity : AppCompatActivity() {
 
         val imgProfile = findViewById<ImageView>(R.id.img_profile)
         Glide.with(this).load(R.drawable.person).circleCrop().into(imgProfile)
+
+        val btBack=findViewById<ImageButton>(R.id.bt_back)
+        btBack.setOnClickListener {
+            finish()
+        }
 
     }
 

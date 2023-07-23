@@ -3,6 +3,7 @@ package com.hamtz.bengkellas.Activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import com.hamtz.bengkellas.R
@@ -37,6 +38,11 @@ class ProdukActivity : AppCompatActivity() {
         }
         imgPgDua.setOnClickListener{
             Toast.makeText(this,"Desain Pagar 2",Toast.LENGTH_SHORT).show()
+        }
+
+        val btBack=findViewById<ImageButton>(R.id.bt_back)
+        btBack.setOnClickListener {
+            finish()
         }
 
     }

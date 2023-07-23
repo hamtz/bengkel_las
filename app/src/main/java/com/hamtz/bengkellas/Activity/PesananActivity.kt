@@ -1,9 +1,12 @@
 package com.hamtz.bengkellas.Activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +29,7 @@ class PesananActivity : AppCompatActivity() {
     lateinit var srlData: SwipeRefreshLayout
     lateinit var pbData: ProgressBar
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pesanan)
@@ -45,6 +49,11 @@ class PesananActivity : AppCompatActivity() {
             srlData.isRefreshing = true
             retrieveData()
             srlData.isRefreshing = false
+        }
+
+        val btBack=findViewById<ImageButton>(R.id.bt_back)
+        btBack.setOnClickListener {
+           finish()
         }
 
     }
