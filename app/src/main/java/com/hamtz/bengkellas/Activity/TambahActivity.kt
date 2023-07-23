@@ -186,8 +186,9 @@ class TambahActivity : AppCompatActivity() {
         simpanData.enqueue(object : Callback<ResponseModel> {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val kode = response.body()?.kode
-                val pesan = response.body()?.pesan
-                Toast.makeText(this@TambahActivity, "Pesan : $pesan", Toast.LENGTH_LONG).show()
+//                val pesan = response.body()?.pesan
+                val pesan = "Pesanan berhasil ditambahkan"
+                Toast.makeText(this@TambahActivity, " $pesan", Toast.LENGTH_LONG).show()
             }
 
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {

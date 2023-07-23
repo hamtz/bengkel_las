@@ -63,7 +63,7 @@ class PesananActivity : AppCompatActivity() {
         retrieveData()
     }
 
-    private fun retrieveData(){
+    fun retrieveData(){
         pbData.setVisibility(View.VISIBLE)
         val ardData: APIRequestData = RetroServer.konekRetrofit().create(APIRequestData::class.java)
         val tampilData: Call<ResponseModel> = ardData.ardRetrieveData()

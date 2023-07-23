@@ -22,4 +22,10 @@ interface APIRequestData {
         @Field("ketebalan") ketebalan: String,
         @Field("kode_desain") kode_desain: String,
     ):Call<ResponseModel>
+
+    @FormUrlEncoded
+    @POST("delete.php")
+    fun ardDeleteData(
+        @Field("id") id: Int
+    ):Call<ResponseModel>
 }
