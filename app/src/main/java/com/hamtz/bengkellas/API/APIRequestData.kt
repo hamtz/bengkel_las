@@ -6,6 +6,9 @@ import retrofit2.http.*
 
 
 interface APIRequestData {
+    @GET("retrieve_user.php")
+    fun apiRetrieveUser(): Call<ResponseModel>
+
     @GET("retrieve.php")
     fun ardRetrieveData(): Call<ResponseModel>
 

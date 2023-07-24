@@ -9,6 +9,7 @@ class RetroServer {
 
     companion object {
         private val baseURL = "http://192.168.43.215:8080/bengkelasri/"
+//        private val baseURL = "http://xampp.mamanialaundry.my.id:8080/bengkelasri/"
 //        private val baseURL = "http://192.168.1.17:8080/bengkelasri/"
         private var retro: Retrofit? = null
 //

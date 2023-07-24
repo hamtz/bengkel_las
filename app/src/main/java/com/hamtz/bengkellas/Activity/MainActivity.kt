@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.hamtz.bengkellas.R.layout.activity_main)
 
+        val ibUser = findViewById<ImageView>(R.id.ib_user)
+        Glide.with(this).load(R.drawable.person).circleCrop().into(ibUser)
+
         val imgLogoApp = findViewById<ImageView>(R.id.img_logo_app)
         Glide.with(this).load(R.drawable.logo).circleCrop().into(imgLogoApp)
 
