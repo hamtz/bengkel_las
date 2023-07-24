@@ -1,13 +1,14 @@
 package com.hamtz.bengkellas.API
 
 import com.hamtz.bengkellas.Model.ResponseModel
+import com.hamtz.bengkellas.Model.ResponseUserModel
 import retrofit2.Call
 import retrofit2.http.*
 
 
 interface APIRequestData {
     @GET("retrieve_user.php")
-    fun apiRetrieveUser(): Call<ResponseModel>
+    fun apiRetrieveUserData(): Call<ResponseUserModel>
 
     @GET("retrieve.php")
     fun ardRetrieveData(): Call<ResponseModel>
