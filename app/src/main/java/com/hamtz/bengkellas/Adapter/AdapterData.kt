@@ -49,7 +49,7 @@ class AdapterData (
         val idPesanan = tvId.text.toString().toInt()
 
 
-        dialogPesan.setPositiveButton("Hapus") { dialog, i ->
+        dialogPesan.setPositiveButton("Ya") { dialog, i ->
           // Tindakan ketika tombol "Hapus" di klik
           deleteData(idPesanan)
           val hand = Handler()
