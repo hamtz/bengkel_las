@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(com.hamtz.bengkellas.R.layout.activity_main)
 
         val getIntentUsername:String = intent.getStringExtra("userrole").toString()
+        var nowLogged = getIntentUsername
 
         val ibUser = findViewById<ImageView>(R.id.ib_user)
         Glide.with(this).load(R.drawable.person).circleCrop().into(ibUser)
@@ -69,10 +70,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         val btPesanan=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_pesanan)
+
         btPesanan.setOnClickListener {
             val intent = Intent(this, PesananActivity::class.java)
             startActivity(intent)
+
+//        if (nowLogged.equals("Admin", ignoreCase = true)) {
+//            btPesanan.setOnClickListener {
+//                val intent = Intent(this, EditPesananActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }else{
+//            btPesanan.setOnClickListener {
+//                val intent = Intent(this, PesananActivity::class.java)
+//                startActivity(intent)
+//            }
         }
+
+
         val btAbout=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_tentang)
         btAbout.setOnClickListener {
             val intent = Intent(this, AboutActivity::class.java)

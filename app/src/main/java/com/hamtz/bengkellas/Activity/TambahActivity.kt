@@ -1,5 +1,6 @@
 package com.hamtz.bengkellas.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -22,10 +23,17 @@ class TambahActivity : AppCompatActivity() {
     private var bahan: String = ""
     private var ketebalan: String = ""
     private var kode_desain: String = ""
+    private var status_pesanan: String = ""
+
+
+    companion object {
+        const val REQUEST_CODE = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah)
+
 
         //button
         val btPesan = findViewById<Button>(R.id.bt_pesan)
@@ -38,6 +46,15 @@ class TambahActivity : AppCompatActivity() {
         val spKetebalan = findViewById<Spinner>(R.id.sp_ketebalan)
         val spDesain = findViewById<Spinner>(R.id.sp_kode)
 
+
+        val btCekLoc = findViewById<Button>(R.id.bt_cekLoc)
+        val valueLat: Double = intent.getDoubleExtra("LatValue",0.0)
+        val valueLng:Double = intent.getDoubleExtra("LngValue",0.0)
+
+//        tvLat.text = valueLat.toString()
+//        tvLng.text = valueLng.toString()
+
+        Toast.makeText(this@TambahActivity, " "+valueLat+" "+valueLng, Toast.LENGTH_SHORT).show()
 
         // access the items of the list
         val listBahan = resources.getStringArray(R.array.List_Bahan)
@@ -126,6 +143,11 @@ class TambahActivity : AppCompatActivity() {
             finish()
         }
 
+        btCekLoc.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE)
+        }
+
         btPesan.setOnClickListener {
             nama = etNama.text.toString()
             alamat = etAlamat.text.toString()
@@ -135,6 +157,7 @@ class TambahActivity : AppCompatActivity() {
             bahan = spBahan.selectedItem.toString()
             ketebalan = spKetebalan.selectedItem.toString()
             kode_desain = spDesain.selectedItem.toString()
+            status_pesanan = "0"
 
             if (nama.isEmpty()) {
                 etNama.error = "Nama Harus Diisi"
@@ -153,7 +176,7 @@ class TambahActivity : AppCompatActivity() {
 //           }else if(spDesain.toString().isEmpty()){
 //               etLebar.error="isi lebar (cm)"
             } else {
-                createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain)
+                createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain,status_pesanan)
                 finish()
 //               Toast.makeText(this,(nama+" x " +alamat+" x " + telepon +" x "+ panjang +" x "+ lebar+" x " + bahan +" x "+ketebalan +" x "+ kode_desain ),Toast.LENGTH_LONG).show()
 //               Toast.makeText(this,nama,Toast.LENGTH_LONG).show()
@@ -164,6 +187,22 @@ class TambahActivity : AppCompatActivity() {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val tvLat = findViewById<TextView>(R.id.tv_lat)
+        val tvLng = findViewById<TextView>(R.id.tv_lng)
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                val returnedValue1 = data?.getDoubleExtra("returned_value1",0.0)
+                val returnedValue2 = data?.getDoubleExtra("returned_value2",0.0)
+                tvLat.text = returnedValue1.toString()
+                tvLng.text = returnedValue2.toString()
+            }
+        }
+    }
+
     private fun createData(
         nama: String,
         alamat: String,
@@ -172,7 +211,8 @@ class TambahActivity : AppCompatActivity() {
         lebar: String,
         bahan: String,
         ketebalan: String,
-        kode_desain: String
+        kode_desain: String,
+        status_pesanan:String
     ) {
 //        Toast.makeText(
 //            this,
@@ -181,19 +221,16 @@ class TambahActivity : AppCompatActivity() {
 //        ).show()
 
         val ardData: APIRequestData = RetroServer.konekRetrofit().create(APIRequestData::class.java)
-        val simpanData: Call<ResponseModel> = ardData.ardCreateData(nama,alamat,telepon,panjang,lebar,bahan,ketebalan,kode_desain)
-//
+        val simpanData: Call<ResponseModel> = ardData.ardCreateData(nama,alamat,telepon,panjang,lebar,bahan,ketebalan,kode_desain,status_pesanan)
         simpanData.enqueue(object : Callback<ResponseModel> {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val kode = response.body()?.kode
-//                val pesan = response.body()?.pesan
                 val pesan = "Pesanan berhasil ditambahkan"
                 Toast.makeText(this@TambahActivity, " $pesan", Toast.LENGTH_LONG).show()
             }
 
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
                 val pesan = "gagal menghubungi server " + t.message
-//                Toast.makeText(this@TambahActivity,(nama + bahan +ketebalan + kode_desain ),Toast.LENGTH_LONG).show()
                 Toast.makeText(this@TambahActivity, pesan, Toast.LENGTH_LONG).show()
 
             }

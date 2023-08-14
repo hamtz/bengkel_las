@@ -25,11 +25,28 @@ interface APIRequestData {
         @Field("bahan") bahan: String,
         @Field("ketebalan") ketebalan: String,
         @Field("kode_desain") kode_desain: String,
+        @Field ("status_pesanan")status_pesanan: String,
     ):Call<ResponseModel>
 
     @FormUrlEncoded
     @POST("delete.php")
     fun ardDeleteData(
         @Field("id") id: Int
+    ):Call<ResponseModel>
+
+    @FormUrlEncoded
+    @POST("get.php")
+    fun ardGetData(
+        @Field("id") id: Int
+    ):Call<ResponseModel>
+
+    @FormUrlEncoded
+    @POST("update.php")
+    fun ardUpdateData(
+        @Field("id") id: String,
+        @Field("nama") nama: String,
+        @Field("alamat") alamat: String,
+        @Field("telepon") telepon: String,
+        @Field("status_pesanan") status_pesanan: String,
     ):Call<ResponseModel>
 }

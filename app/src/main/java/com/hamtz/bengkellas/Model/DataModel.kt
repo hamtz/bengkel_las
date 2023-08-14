@@ -13,6 +13,7 @@ data class DataModel(
     var bahan:String,
     var ketebalan:String,
     var kode_desain:String,
+    var status_pesanan:String,
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -21,6 +22,7 @@ data class DataModel(
         parcel.readString().toString(),
         parcel.readInt(),
         parcel.readInt(),
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString()
@@ -32,11 +34,12 @@ data class DataModel(
         parcel.writeString(nama)
         parcel.writeString(alamat)
         parcel.writeString(telepon)
-        parcel.writeString(panjang.toString())
-        parcel.writeString(lebar.toString())
+        parcel.writeInt(panjang)
+        parcel.writeInt(lebar)
         parcel.writeString(bahan)
         parcel.writeString(ketebalan)
         parcel.writeString(kode_desain)
+        parcel.writeString(status_pesanan)
     }
 
     override fun describeContents(): Int {

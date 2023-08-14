@@ -3,16 +3,19 @@ package com.hamtz.bengkellas.Adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.hamtz.bengkellas.API.APIRequestData
 import com.hamtz.bengkellas.API.RetroServer
 import com.hamtz.bengkellas.Activity.PesananActivity
+import com.hamtz.bengkellas.Activity.UbahActivity
 import com.hamtz.bengkellas.Model.DataModel
 import com.hamtz.bengkellas.Model.ResponseModel
 import com.hamtz.bengkellas.R
@@ -23,6 +26,7 @@ import retrofit2.Response
 class AdapterData (
   val ctx:Context,
   val listData:ArrayList<DataModel>,
+//  val listPesanan:ArrayList<DataModel>,
 //  val idPesanan:Int
 
   ):
@@ -59,9 +63,9 @@ class AdapterData (
 
 
         }
-
+//
 //        dialogPesan.setNegativeButton("Ubah") { dialog, i ->
-//          // Tindakan ketika tombol "Ubah" di klik
+//          getData(idPesanan)
 //        }
 
         dialogPesan.show()
@@ -69,9 +73,7 @@ class AdapterData (
       }
     }
 
-    private fun deleteData(
-      idPesanan:Int
-    ) {
+    private fun deleteData(idPesanan:Int) {
       val ardData: APIRequestData = RetroServer.konekRetrofit()!!.create(APIRequestData::class.java)
       val hapusData: Call<ResponseModel> = ardData.ardDeleteData(idPesanan)
 
@@ -81,6 +83,43 @@ class AdapterData (
 //          val pesan = response.body()?.pesan
           val pesan = "Berhasil membatalkan pesanan"
           Toast.makeText(ctx, "$pesan", Toast.LENGTH_LONG).show()
+
+        }
+
+        override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+          val pesan = "Gagal menghubungi server"
+          Toast.makeText(ctx, "$pesan", Toast.LENGTH_LONG).show()
+
+        }
+
+      })
+    }
+
+    private fun getData(idPesanan:Int) {
+      val ardData: APIRequestData = RetroServer.konekRetrofit()!!.create(APIRequestData::class.java)
+      val ambilData: Call<ResponseModel> = ardData.ardGetData(idPesanan)
+
+      ambilData.enqueue(object : Callback<ResponseModel>{
+        override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+          val kode = response.body()?.kode
+//          val pesan = response.body()?.pesan
+          val pesan = "Berhasil membatalkan pesanan"
+          val listPesanan = response.body()?.data
+
+          var varIdPesanan= listPesanan?.get(0)?.id
+          var varNamaPesanan= listPesanan?.get(0)?.nama
+          var varAlamatPesanan= listPesanan?.get(0)?.alamat
+          var varTeleponPesanan= listPesanan?.get(0)?.telepon
+          var varStatusPesanan= listPesanan?.get(0)?.status_pesanan
+          Toast.makeText(ctx, "id "+varIdPesanan+ ", alamat"+varAlamatPesanan+", telepon"+varTeleponPesanan+", status "+varStatusPesanan+ " ", Toast.LENGTH_LONG).show()
+
+          val intent = Intent(ctx, UbahActivity::class.java)
+          intent.putExtra("xId",varIdPesanan)
+          intent.putExtra("xNama",varNamaPesanan)
+          intent.putExtra("xAlamat",varAlamatPesanan)
+          intent.putExtra("xTelepon",varTeleponPesanan)
+          intent.putExtra("xStatuspesanan",varStatusPesanan)
+          startActivity(ctx,intent, Bundle())
 
         }
 
