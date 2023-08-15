@@ -28,7 +28,8 @@
 
         <activity
             android:name=".Activity.UbahActivity"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false" />
+        <!-- <activity -->
         <!-- android:name=".Activity.EditPesananActivity" -->
         <!-- android:exported="false" /> -->
         <activity

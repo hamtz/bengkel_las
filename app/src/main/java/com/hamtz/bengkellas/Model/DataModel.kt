@@ -3,6 +3,7 @@ package com.hamtz.bengkellas.Model
 import android.os.Parcel
 import android.os.Parcelable
 
+//@Parcelize
 data class DataModel(
     var id: Int,
     var nama: String,
@@ -14,6 +15,8 @@ data class DataModel(
     var ketebalan:String,
     var kode_desain:String,
     var status_pesanan:String,
+    var nilai_lat:String,
+    var nilai_lng:String,
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -22,6 +25,8 @@ data class DataModel(
         parcel.readString().toString(),
         parcel.readInt(),
         parcel.readInt(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -40,6 +45,8 @@ data class DataModel(
         parcel.writeString(ketebalan)
         parcel.writeString(kode_desain)
         parcel.writeString(status_pesanan)
+        parcel.writeString(nilai_lat)
+        parcel.writeString(nilai_lng)
     }
 
     override fun describeContents(): Int {

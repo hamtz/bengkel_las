@@ -23,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.hamtz.bengkellas.Model.LatLngManager
 import com.hamtz.bengkellas.R
 
 class MapsActivity : AppCompatActivity() {
@@ -91,6 +92,10 @@ class MapsActivity : AppCompatActivity() {
                         returnIntent.putExtra("returned_value1", returnedValue1)
                         returnIntent.putExtra("returned_value2", returnedValue2)
                         setResult(Activity.RESULT_OK, returnIntent)
+
+//                    sementara tidak dipakai
+//                        LatLngManager.latValue = location.latitude
+//                        LatLngManager.lngValue = location.longitude
 
                         tvLatitude.text=""+location.latitude
                         tvLongitude.text=""+location.longitude

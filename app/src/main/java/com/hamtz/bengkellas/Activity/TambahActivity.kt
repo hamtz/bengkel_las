@@ -24,6 +24,8 @@ class TambahActivity : AppCompatActivity() {
     private var ketebalan: String = ""
     private var kode_desain: String = ""
     private var status_pesanan: String = ""
+    private var nilai_lat: String = ""
+    private var nilai_lng: String = ""
 
 
     companion object {
@@ -158,6 +160,8 @@ class TambahActivity : AppCompatActivity() {
             ketebalan = spKetebalan.selectedItem.toString()
             kode_desain = spDesain.selectedItem.toString()
             status_pesanan = "0"
+//            nilai_lat = valueLat.toString()
+//            nilai_lng = valueLng.toString()
 
             if (nama.isEmpty()) {
                 etNama.error = "Nama Harus Diisi"
@@ -176,7 +180,8 @@ class TambahActivity : AppCompatActivity() {
 //           }else if(spDesain.toString().isEmpty()){
 //               etLebar.error="isi lebar (cm)"
             } else {
-                createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain,status_pesanan)
+
+                createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain,status_pesanan,nilai_lat,nilai_lng)
                 finish()
 //               Toast.makeText(this,(nama+" x " +alamat+" x " + telepon +" x "+ panjang +" x "+ lebar+" x " + bahan +" x "+ketebalan +" x "+ kode_desain ),Toast.LENGTH_LONG).show()
 //               Toast.makeText(this,nama,Toast.LENGTH_LONG).show()
@@ -197,6 +202,10 @@ class TambahActivity : AppCompatActivity() {
             if (resultCode == RESULT_OK) {
                 val returnedValue1 = data?.getDoubleExtra("returned_value1",0.0)
                 val returnedValue2 = data?.getDoubleExtra("returned_value2",0.0)
+
+                nilai_lat = returnedValue1.toString()
+                nilai_lng = returnedValue2.toString()
+
                 tvLat.text = returnedValue1.toString()
                 tvLng.text = returnedValue2.toString()
             }
@@ -212,16 +221,19 @@ class TambahActivity : AppCompatActivity() {
         bahan: String,
         ketebalan: String,
         kode_desain: String,
-        status_pesanan:String
-    ) {
+        status_pesanan: String,
+        nilai_lat: String,
+        nilai_lng: String,
+
+        ) {
 //        Toast.makeText(
 //            this,
-//            (nama + " x " + alamat + " x " + telepon + " x " + panjang + " x " + lebar + " x " + bahan + " x " + ketebalan + " x " + kode_desain),
+//            (nama + " x " + alamat + " x " + telepon + " x " + panjang + " x " + lebar + " x " + bahan + " x " + ketebalan + " x " + kode_desain+"|"+ nilai_lat + " x " + nilai_lng),
 //            Toast.LENGTH_LONG
 //        ).show()
 
         val ardData: APIRequestData = RetroServer.konekRetrofit().create(APIRequestData::class.java)
-        val simpanData: Call<ResponseModel> = ardData.ardCreateData(nama,alamat,telepon,panjang,lebar,bahan,ketebalan,kode_desain,status_pesanan)
+        val simpanData: Call<ResponseModel> = ardData.ardCreateData(nama,alamat,telepon,panjang,lebar,bahan,ketebalan,kode_desain,status_pesanan,nilai_lat,nilai_lng)
         simpanData.enqueue(object : Callback<ResponseModel> {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val kode = response.body()?.kode

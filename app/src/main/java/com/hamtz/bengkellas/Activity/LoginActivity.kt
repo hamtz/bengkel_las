@@ -8,10 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.hamtz.bengkellas.API.APIRequestData
 import com.hamtz.bengkellas.API.RetroServer
-import com.hamtz.bengkellas.Model.DataModel
-import com.hamtz.bengkellas.Model.ResponseModel
-import com.hamtz.bengkellas.Model.ResponseUserModel
-import com.hamtz.bengkellas.Model.UserModel
+import com.hamtz.bengkellas.Model.*
 import com.hamtz.bengkellas.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
             } else if (password.isEmpty()) {
                 etPassword.error = "Password Harus Diisi"
             }
+            LoginUserManager.username = username
 
             var getUsername = varUsername
 
@@ -72,14 +70,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
 //                Toast.makeText(this@LoginActivity, "Username: $varUsername |Password: $varPassword |Role: $varRole", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,MainActivity::class.java)
-                intent.putExtra("userrole","ADMIN")
+//                intent.putExtra("userrole","ADMIN")
                 finish()
                 startActivity(intent)
 
             }else if (username == "user"){
                 Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,MainActivity::class.java)
-                intent.putExtra("userrole","USER")
+//                intent.putExtra("userrole","USER")
                 finish()
                 startActivity(intent)
 

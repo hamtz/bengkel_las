@@ -18,6 +18,7 @@ import com.hamtz.bengkellas.API.APIRequestData
 import com.hamtz.bengkellas.API.RetroServer
 import com.hamtz.bengkellas.Adapter.AdapterData
 import com.hamtz.bengkellas.Model.DataModel
+import com.hamtz.bengkellas.Model.LoginUserManager
 import com.hamtz.bengkellas.Model.ResponseModel
 import com.hamtz.bengkellas.R
 import retrofit2.Call
@@ -42,14 +43,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.hamtz.bengkellas.R.layout.activity_main)
 
-        val getIntentUsername:String = intent.getStringExtra("userrole").toString()
-        var nowLogged = getIntentUsername
+//        val getIntentUsername:String = intent.getStringExtra("userrole").toString()
+        val username = LoginUserManager.username
+        var nowLogged = username
 
         val ibUser = findViewById<ImageView>(R.id.ib_user)
         Glide.with(this).load(R.drawable.person).circleCrop().into(ibUser)
         ibUser.setOnClickListener{
             val intent = Intent(this,UserActivity::class.java)
-            intent.putExtra("userrole",getIntentUsername)
+            intent.putExtra("userrole",username)
 //            startActivity(intent,REQUEST_LOGOUT)
 //            startActivityForResult(intent, REQUEST_LOGOUT)
             startActivityIfNeeded(intent, REQUEST_LOGOUT)

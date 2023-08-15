@@ -2,11 +2,15 @@ package com.hamtz.bengkellas.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.hamtz.bengkellas.API.APIRequestData
 import com.hamtz.bengkellas.API.RetroServer
+import com.hamtz.bengkellas.Model.DataPesananManager
+import com.hamtz.bengkellas.Model.LoginUserManager
 import com.hamtz.bengkellas.Model.ResponseModel
 import com.hamtz.bengkellas.R
 import retrofit2.Call
@@ -26,38 +30,68 @@ class UbahActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ubah)
 
-        // Mendapatkan nilai dari Intent
-        val getIntentId: Int = intent.getIntExtra("xId", 0)
-        val getIntentNama: String? = intent.getStringExtra("xNama")
-        val getIntentAlamat: String? = intent.getStringExtra("xAlamat")
-        val getIntentTelepon: String? = intent.getStringExtra("xTelepon")
-        val getIntentStatus: String? = intent.getStringExtra("xStatuspesanan")
+//        val dataId = DataPesananManager.id
+//        val dataNama = DataPesananManager.nama
+//        val dataAlamat = DataPesananManager.alamat
+//        val dataTelepon = DataPesananManager.telepon
+//        val dataStatus = DataPesananManager.status_pesanan
 
-// Mendeklarasikan dan mendapatkan referensi ke EditText
-        val etNama = findViewById<EditText>(R.id.et_nama)
-        val etAlamat = findViewById<EditText>(R.id.et_alamat)
-        val etTelepon = findViewById<EditText>(R.id.et_telepon)
-        val etStatus = findViewById<EditText>(R.id.et_status)
+        // Mendapatkan nilai dari Intent
+//        val getIntentId: Int = intent.getIntExtra("xId", 0)
+//        val getIntentNama: String? = intent.getStringExtra("xNama")
+//        val getIntentAlamat: String? = intent.getStringExtra("xAlamat")
+//        val getIntentTelepon: String? = intent.getStringExtra("xTelepon")
+//        val getIntentStatus: String? = intent.getStringExtra("xStatuspesanan")
+
+// Mendeklarasikan dan mendapatkan referensi ke TextView
+        val tvId = findViewById<TextView>(R.id.textViewId)
+        val tvNama = findViewById<TextView>(R.id.textViewNama)
+        val tvAlamat = findViewById<TextView>(R.id.textViewAlamat)
+        val tvTelepon = findViewById<TextView>(R.id.textViewTelepon)
+        val tvPanjang = findViewById<TextView>(R.id.textViewPanjang)
+        val tvLebar = findViewById<TextView>(R.id.textViewLebar)
+        val tvBahan = findViewById<TextView>(R.id.textViewBahan)
+        val tvKetebalan = findViewById<TextView>(R.id.textViewKetebalan)
+        val tvKode = findViewById<TextView>(R.id.textViewKode)
+        val tvBiaya = findViewById<TextView>(R.id.textViewBiaya)
+        val tvStatus = findViewById<TextView>(R.id.textViewStatus)
+        var biaya = getBiaya()
+
 
 // Mengisi nilai dari Intent ke dalam EditText
-        etNama.setText(getIntentNama)
-        etAlamat.setText(getIntentAlamat)
-        etTelepon.setText(getIntentTelepon)
-        etStatus.setText(getIntentStatus)
+        tvId.text = DataPesananManager.id.toString()
+        tvNama.text = DataPesananManager.nama
+        tvAlamat.text = DataPesananManager.alamat
+        tvTelepon.text =DataPesananManager.telepon
+        tvPanjang.text =DataPesananManager.panjang.toString()
+        tvLebar.text =DataPesananManager.lebar.toString()
+        tvBahan.text =DataPesananManager.bahan
+        tvKetebalan.text =DataPesananManager.ketebalan
+        tvKode.text =DataPesananManager.kode_desain
+        tvBiaya.text =biaya.toString()
+        tvStatus.text = DataPesananManager.status_pesanan
 
-        val btUbah = findViewById<Button>(R.id.bt_ubah)
+        val btSelesai = findViewById<Button>(R.id.bt_selesai)
 
-        btUbah.setOnClickListener(){
-            id = getIntentId
-            nama = etNama.text.toString()
-            alamat = etAlamat.text.toString()
-            telepon = etTelepon.text.toString()
-            xstatus = etStatus.text.toString()
-
-            updateData(id,nama,alamat,telepon,xstatus)
+        btSelesai.setOnClickListener(){
+//            id = getIntentId
+//            nama = etNama.text.toString()
+//            alamat = etAlamat.text.toString()
+//            telepon = etTelepon.text.toString()
+//            xstatus = etStatus.text.toString()
+//
+//            updateData(id,nama,alamat,telepon,xstatus)
             finish()
         }
 
+    }
+
+    private fun getBiaya(): Any {
+        val a = DataPesananManager.panjang
+        val b = DataPesananManager.lebar
+        val c = 120000
+        val hasil = (a * b)/10000 * c
+        return hasil
     }
 
     private fun updateData(

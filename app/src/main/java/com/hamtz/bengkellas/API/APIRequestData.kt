@@ -26,6 +26,8 @@ interface APIRequestData {
         @Field("ketebalan") ketebalan: String,
         @Field("kode_desain") kode_desain: String,
         @Field ("status_pesanan")status_pesanan: String,
+        @Field ("nilai_lat")nilai_lat: String,
+        @Field ("nilai_lng")nilai_lng: String,
     ):Call<ResponseModel>
 
     @FormUrlEncoded
