@@ -12,5 +12,7 @@ object DataPesananManager {
     var kode_desain: String = ""
     var biaya: Double = 0.0
     var status_pesanan: String = ""
+    var nilai_lat: String = ""
+    var nilai_lng: String= ""
 
 }

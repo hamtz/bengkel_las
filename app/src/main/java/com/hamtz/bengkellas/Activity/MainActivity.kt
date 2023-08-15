@@ -28,11 +28,6 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-//    lateinit var rvData: RecyclerView
-//    lateinit var listData: ArrayList<DataModel>
-//    lateinit var srlData: SwipeRefreshLayout
-//    lateinit var pbData:ProgressBar
-
     // Konstanta untuk kode permintaan (request code) saat memanggil UserActivity
     companion object {
         private const val REQUEST_LOGOUT = 1
@@ -43,9 +38,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.hamtz.bengkellas.R.layout.activity_main)
 
-//        val getIntentUsername:String = intent.getStringExtra("userrole").toString()
         val username = LoginUserManager.username
-        var nowLogged = username
+        val btListPesanan=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_listPesanan)
+
+        if (username.equals("Admin", ignoreCase = true)){
+            btListPesanan.visibility = View.GONE
+        }else{
+            btListPesanan.visibility = View.GONE
+        }
 
         val ibUser = findViewById<ImageView>(R.id.ib_user)
         Glide.with(this).load(R.drawable.person).circleCrop().into(ibUser)
@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
 
         val imgLogoApp = findViewById<ImageView>(R.id.img_logo_app)
         Glide.with(this).load(R.drawable.logo).circleCrop().into(imgLogoApp)
-
 
         val btProduk=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_produk)
         btProduk.setOnClickListener {
@@ -76,19 +75,7 @@ class MainActivity : AppCompatActivity() {
         btPesanan.setOnClickListener {
             val intent = Intent(this, PesananActivity::class.java)
             startActivity(intent)
-
-//        if (nowLogged.equals("Admin", ignoreCase = true)) {
-//            btPesanan.setOnClickListener {
-//                val intent = Intent(this, EditPesananActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }else{
-//            btPesanan.setOnClickListener {
-//                val intent = Intent(this, PesananActivity::class.java)
-//                startActivity(intent)
-//            }
         }
-
 
         val btAbout=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_tentang)
         btAbout.setOnClickListener {

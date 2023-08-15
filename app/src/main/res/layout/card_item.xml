@@ -1,87 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:outlineAmbientShadowColor="@color/black"
+    app:cardElevation="12dp"
+    android:layout_margin="16dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="18dp"
-        android:padding="8dp"
-        android:background="@color/teal_200"
+        android:padding="18dp"
         >
-        <TextView
-            android:id="@+id/tv_id"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-        <TextView
-            android:id="@+id/tv_nama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="nama"
-            android:textSize="18sp"
-            android:maxLines="2"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tv_alamat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="alamat"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tv_telepon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="telepon"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tv_panjang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="panjang"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tv_lebar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lebar"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tv_bahan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="bahan"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tv_ketebalan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ketebalan"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            />
-    <TextView
-            android:id="@+id/tv_desain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="desain"
-            android:textSize="18sp"
-        android:textColor="@color/black"
-            />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Nama"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Telepon"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Alamat"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Desain"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Panjang (cm)"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Lebar (cm)"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Ketebalan"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Bahan"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Biaya"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text=" : "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+                <TextView
+                    android:id="@+id/tv_nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="nama"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_telepon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="telepon"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_alamat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="alamat"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_desain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="desain"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_panjang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="panjang"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                
+                <TextView
+                    android:id="@+id/tv_lebar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="lebar"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tv_ketebalan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ketebalan"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tv_bahan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bahan"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tv_biaya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="biaya"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

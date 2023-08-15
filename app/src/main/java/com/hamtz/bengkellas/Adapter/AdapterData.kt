@@ -28,9 +28,6 @@ import retrofit2.Response
 class AdapterData(
     val ctx: Context,
     val listData: ArrayList<DataModel>,
-//  val listPesanan:ArrayList<DataModel>,
-//  val idPesanan:Int
-
 ) :
     RecyclerView.Adapter<AdapterData.HolderData>() {
 
@@ -45,6 +42,8 @@ class AdapterData(
         val tvBahan: TextView = itemView.findViewById(R.id.tv_bahan)
         val tvKetebalan: TextView = itemView.findViewById(R.id.tv_ketebalan)
         val tvDesain: TextView = itemView.findViewById(R.id.tv_desain)
+        val tvBiaya: TextView = itemView.findViewById(R.id.tv_biaya)
+
 
         init {
             itemView.setOnLongClickListener {
@@ -66,7 +65,7 @@ class AdapterData(
                             (ctx as PesananActivity).retrieveData()
                         }, 1000)
                     }
-                    dialogPesan.setNegativeButton("Ubah") { dialog, i ->
+                    dialogPesan.setNegativeButton("Detail") { dialog, i ->
                         getData(idPesanan)
                     }
                     dialogPesan.show()
@@ -135,20 +134,14 @@ class AdapterData(
                     var varKetebalanPesanan = listPesanan?.get(0)?.ketebalan
                     var varKodePesanan = listPesanan?.get(0)?.kode_desain
                     var varStatusPesanan = listPesanan?.get(0)?.status_pesanan
-
-
-                    Toast.makeText(
-                        ctx,
-                        "id " + varIdPesanan + ", alamat" + varAlamatPesanan + ", telepon" + varTeleponPesanan + ", status " + varStatusPesanan + " ",
-                        Toast.LENGTH_LONG
-                    ).show()
-
+                    var varNilaiLat = listPesanan?.get(0)?.nilai_lat
+                    var varNilaiLng = listPesanan?.get(0)?.nilai_lng
+//                    Toast.makeText(
+//                        ctx,
+//                        "adapter get data= id " + varIdPesanan + ", alamat" + varAlamatPesanan + ", telepon" + varTeleponPesanan + ", status " + varStatusPesanan + " | "+varNilaiLat+" , " + varNilaiLng,
+//                        Toast.LENGTH_LONG
+//                    ).show()
                     val intent = Intent(ctx, UbahActivity::class.java)
-//                    intent.putExtra("xId", varIdPesanan)
-//                    intent.putExtra("xNama", varNamaPesanan)
-//                    intent.putExtra("xAlamat", varAlamatPesanan)
-//                    intent.putExtra("xTelepon", varTeleponPesanan)
-//                    intent.putExtra("xStatuspesanan", varStatusPesanan)
                     DataPesananManager.id = varIdPesanan!!
                     DataPesananManager.nama = varNamaPesanan.toString()
                     DataPesananManager.alamat = varAlamatPesanan.toString()
@@ -159,6 +152,8 @@ class AdapterData(
                     DataPesananManager.ketebalan = varKetebalanPesanan.toString()
                     DataPesananManager.kode_desain = varKodePesanan.toString()
                     DataPesananManager.status_pesanan = varStatusPesanan.toString()
+                    DataPesananManager.nilai_lat = varNilaiLat.toString()
+                    DataPesananManager.nilai_lng = varNilaiLng.toString()
                     startActivity(ctx, intent, Bundle())
 
                 }
@@ -166,24 +161,15 @@ class AdapterData(
                 override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
                     val pesan = "Gagal menghubungi server"
                     Toast.makeText(ctx, "$pesan", Toast.LENGTH_LONG).show()
-
                 }
-
             })
         }
-
-
-
-
     }
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderData {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
         return HolderData(itemView)
     }
-
     override fun getItemCount(): Int {
         return listData.size
     }
@@ -200,6 +186,7 @@ class AdapterData(
         holder.tvBahan.text = dm.bahan
         holder.tvKetebalan.text = dm.ketebalan
         holder.tvDesain.text = dm.kode_desain
+        holder.tvBiaya.text = dm.ongkos.toString()
 
 
     }

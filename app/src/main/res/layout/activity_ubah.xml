@@ -18,7 +18,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/bt_back"
+                android:id="@+id/bt_kembali"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_margin="4dp"
@@ -41,56 +41,67 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Id Pesanan" />
+                    android:text="Id Pesanan"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nama Pemesan" />
+                    android:text="Nama Pemesan"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Alamat" />
+                    android:text="Alamat"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Telepon" />
+                    android:text="Telepon"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Panjang (cm) " />
+                    android:text="Panjang (cm)"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lebar (cm)" />
+                    android:text="Lebar (cm)"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bahan" />
+                    android:text="Bahan"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ketebalan" />
+                    android:text="Ketebalan"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kode Desain" />
+                    android:text="Kode Desain"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Biaya" />
+                    android:text="Biaya (Rp)"
+                    android:textColor="@color/black"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Status" />
+                    android:text="Status"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -103,37 +114,48 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                    android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" /><TextView
+                    android:text=":"
+                android:textColor="@color/black"/><TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":" />
+                    android:text=":"
+                android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -148,66 +170,88 @@
                     android:id="@+id/textViewId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/textViewNama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/textViewAlamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView" android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/textViewTelepon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/textViewPanjang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/textViewLebar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/textViewBahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/textViewKetebalan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/textViewKode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/textViewBiaya"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/textViewStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"/>
 
 
             </LinearLayout>
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="12dp">
+            <fragment
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:id="@+id/map_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
 
         <Button
             android:id="@+id/bt_selesai"

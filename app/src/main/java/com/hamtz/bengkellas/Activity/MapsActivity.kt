@@ -23,7 +23,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.hamtz.bengkellas.Model.LatLngManager
 import com.hamtz.bengkellas.R
 
 class MapsActivity : AppCompatActivity() {
@@ -50,10 +49,6 @@ class MapsActivity : AppCompatActivity() {
 
         btMarkLoc.setOnClickListener {
             val intent = Intent(this, TambahActivity::class.java)
-
-//            intent.putExtra("LatValue",tvLatitude.toString())
-//            intent.putExtra("LngValue",tvLongitude.toString())
-//            startActivity(intent)
             finish()
         }
 
@@ -110,7 +105,6 @@ class MapsActivity : AppCompatActivity() {
                     }
                 }
 
-
             }else{
                 //setting open here
                 Toast.makeText(this,"Turn on location", Toast.LENGTH_SHORT).show()
@@ -129,7 +123,7 @@ class MapsActivity : AppCompatActivity() {
         val myLocation = LatLng(latitude,longitude)
         mMap.addMarker(MarkerOptions().position(myLocation).title("Lokasi"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation,20.0f))
-        Toast.makeText(this,""+latitude+"  "+longitude, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,""+latitude+"  "+longitude, Toast.LENGTH_SHORT).show()
         places.forEach { place ->
             val marker = googleMap.addMarker(
                 MarkerOptions()
@@ -137,14 +131,12 @@ class MapsActivity : AppCompatActivity() {
                     .position(place.latLng)
             )
         }
-
     }
 
     private fun isLocationEnabled(): Boolean {
         val locationManager: LocationManager =getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
-
     }
 
     private fun requestPermission(){

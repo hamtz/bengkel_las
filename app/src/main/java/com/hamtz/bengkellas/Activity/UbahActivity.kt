@@ -1,12 +1,19 @@
 package com.hamtz.bengkellas.Activity
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.hamtz.bengkellas.API.APIRequestData
 import com.hamtz.bengkellas.API.RetroServer
 import com.hamtz.bengkellas.Model.DataPesananManager
@@ -19,22 +26,21 @@ import retrofit2.Response
 
 class UbahActivity : AppCompatActivity() {
 
-    private var id:Int = 0
-    private var nama: String = ""
-    private var alamat: String = ""
-    private var telepon: String = ""
-    private var xstatus: String = ""
-
-
+//    private var id:Int = 0
+//    private var nama: String = ""
+//    private var alamat: String = ""
+//    private var telepon: String = ""
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ubah)
 
-//        val dataId = DataPesananManager.id
-//        val dataNama = DataPesananManager.nama
-//        val dataAlamat = DataPesananManager.alamat
-//        val dataTelepon = DataPesananManager.telepon
-//        val dataStatus = DataPesananManager.status_pesanan
+        val mapFragment = supportFragmentManager.findFragmentById(
+            R.id.map_fragment
+        ) as? SupportMapFragment
+        mapFragment?.getMapAsync { googleMap ->
+            addMarkers(googleMap)
+        }
 
         // Mendapatkan nilai dari Intent
 //        val getIntentId: Int = intent.getIntExtra("xId", 0)
@@ -69,21 +75,41 @@ class UbahActivity : AppCompatActivity() {
         tvKetebalan.text =DataPesananManager.ketebalan
         tvKode.text =DataPesananManager.kode_desain
         tvBiaya.text =biaya.toString()
-        tvStatus.text = DataPesananManager.status_pesanan
 
-        val btSelesai = findViewById<Button>(R.id.bt_selesai)
-
-        btSelesai.setOnClickListener(){
-//            id = getIntentId
-//            nama = etNama.text.toString()
-//            alamat = etAlamat.text.toString()
-//            telepon = etTelepon.text.toString()
-//            xstatus = etStatus.text.toString()
-//
-//            updateData(id,nama,alamat,telepon,xstatus)
+        val btKembali = findViewById<ImageButton>(R.id.bt_kembali)
+        btKembali.setOnClickListener(){
             finish()
         }
 
+        val btSelesai = findViewById<Button>(R.id.bt_selesai)
+        btSelesai.setOnClickListener(){
+            val idP = DataPesananManager.id
+            val vStatus = "1"
+            updateDataPesanan(idP,vStatus)
+            finish()
+        }
+
+        if (DataPesananManager.status_pesanan == "0"){
+            tvStatus.text ="Pesanan Belum Selesai"
+
+        }else{
+            tvStatus.text ="Pesanan Selesai"
+            btSelesai.isEnabled = false
+        }
+    }
+
+    private fun addMarkers(googleMap: GoogleMap) {
+        val latitude = DataPesananManager.nilai_lat.toDouble()
+        val longitude = DataPesananManager.nilai_lng.toDouble()
+        //        Toast.makeText(this,"AddMarker get data = Lat"+latitude+"| Lng"+longitude+"",Toast.LENGTH_LONG).show()
+        val marker = googleMap.addMarker(
+            MarkerOptions()
+                .title("lokasi")
+                .position(LatLng(latitude, longitude)) // Use LatLng to set the position
+        )
+        // Move camera to the marker's position
+        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 19f)
+        googleMap.moveCamera(cameraUpdate)
     }
 
     private fun getBiaya(): Any {
@@ -117,4 +143,25 @@ class UbahActivity : AppCompatActivity() {
 
         })
     }
+    private fun updateDataPesanan(
+        id: Int,
+        status_pesanan: String) {
+        val ardData: APIRequestData = RetroServer.konekRetrofit().create(APIRequestData::class.java)
+        val updateDataPesanan: Call<ResponseModel> = ardData.ardUpdateDataPesanan(id.toString(),status_pesanan)
+       updateDataPesanan.enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                val kode = response.body()?.kode
+                val pesan = "Pesanan Selesai"
+                Toast.makeText(this@UbahActivity, " $pesan", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                val pesan = "gagal menghubungi server " + t.message + id + status_pesanan
+                Toast.makeText(this@UbahActivity, pesan, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+    }
+
 }

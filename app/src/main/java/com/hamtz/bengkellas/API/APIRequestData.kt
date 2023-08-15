@@ -25,9 +25,10 @@ interface APIRequestData {
         @Field("bahan") bahan: String,
         @Field("ketebalan") ketebalan: String,
         @Field("kode_desain") kode_desain: String,
-        @Field ("status_pesanan")status_pesanan: String,
-        @Field ("nilai_lat")nilai_lat: String,
-        @Field ("nilai_lng")nilai_lng: String,
+        @Field("status_pesanan") status_pesanan: String,
+        @Field("nilai_lat") nilai_lat: String,
+        @Field("nilai_lng") nilai_lng: String,
+        @Field("ongkos") biaya: String,
     ):Call<ResponseModel>
 
     @FormUrlEncoded
@@ -51,4 +52,13 @@ interface APIRequestData {
         @Field("telepon") telepon: String,
         @Field("status_pesanan") status_pesanan: String,
     ):Call<ResponseModel>
+
+    @FormUrlEncoded
+    @POST("updatepesanan.php")
+    fun ardUpdateDataPesanan(
+        @Field("id") id: String,
+        @Field("status_pesanan") status_pesanan: String,
+    ):Call<ResponseModel>
+
+
 }

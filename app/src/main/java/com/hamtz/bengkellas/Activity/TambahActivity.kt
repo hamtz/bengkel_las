@@ -26,6 +26,7 @@ class TambahActivity : AppCompatActivity() {
     private var status_pesanan: String = ""
     private var nilai_lat: String = ""
     private var nilai_lng: String = ""
+    private var ongkos: String = ""
 
 
     companion object {
@@ -35,7 +36,6 @@ class TambahActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah)
-
 
         //button
         val btPesan = findViewById<Button>(R.id.bt_pesan)
@@ -47,16 +47,13 @@ class TambahActivity : AppCompatActivity() {
         val spBahan = findViewById<Spinner>(R.id.sp_bahan)
         val spKetebalan = findViewById<Spinner>(R.id.sp_ketebalan)
         val spDesain = findViewById<Spinner>(R.id.sp_kode)
-
-
         val btCekLoc = findViewById<Button>(R.id.bt_cekLoc)
+
         val valueLat: Double = intent.getDoubleExtra("LatValue",0.0)
         val valueLng:Double = intent.getDoubleExtra("LngValue",0.0)
-
 //        tvLat.text = valueLat.toString()
 //        tvLng.text = valueLng.toString()
-
-        Toast.makeText(this@TambahActivity, " "+valueLat+" "+valueLng, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this@TambahActivity, " "+valueLat+" "+valueLng, Toast.LENGTH_SHORT).show()
 
         // access the items of the list
         val listBahan = resources.getStringArray(R.array.List_Bahan)
@@ -78,7 +75,6 @@ class TambahActivity : AppCompatActivity() {
                     parent: AdapterView<*>,
                     view: View, position: Int, id: Long
                 ) {
-
 //                    var bahan = spBahan
 //                    Toast.makeText(this@TambahActivity,
 //                        getString(R.string.selected_item) + " " +
@@ -160,6 +156,8 @@ class TambahActivity : AppCompatActivity() {
             ketebalan = spKetebalan.selectedItem.toString()
             kode_desain = spDesain.selectedItem.toString()
             status_pesanan = "0"
+            var biaya = getBiaya().toString()
+            
 //            nilai_lat = valueLat.toString()
 //            nilai_lng = valueLng.toString()
 
@@ -181,7 +179,7 @@ class TambahActivity : AppCompatActivity() {
 //               etLebar.error="isi lebar (cm)"
             } else {
 
-                createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain,status_pesanan,nilai_lat,nilai_lng)
+                createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain,status_pesanan,nilai_lat,nilai_lng,biaya)
                 finish()
 //               Toast.makeText(this,(nama+" x " +alamat+" x " + telepon +" x "+ panjang +" x "+ lebar+" x " + bahan +" x "+ketebalan +" x "+ kode_desain ),Toast.LENGTH_LONG).show()
 //               Toast.makeText(this,nama,Toast.LENGTH_LONG).show()
@@ -190,6 +188,14 @@ class TambahActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun getBiaya(): Any {
+        val a = panjang.toInt()
+        val b = lebar.toInt()
+        val c = 120000
+        val hasil = (a * b)/10000 * c
+        return hasil
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -224,20 +230,21 @@ class TambahActivity : AppCompatActivity() {
         status_pesanan: String,
         nilai_lat: String,
         nilai_lng: String,
+        biaya: String,
 
         ) {
 //        Toast.makeText(
 //            this,
-//            (nama + " x " + alamat + " x " + telepon + " x " + panjang + " x " + lebar + " x " + bahan + " x " + ketebalan + " x " + kode_desain+"|"+ nilai_lat + " x " + nilai_lng),
+//            ( "biaya "+biaya),
 //            Toast.LENGTH_LONG
 //        ).show()
 
         val ardData: APIRequestData = RetroServer.konekRetrofit().create(APIRequestData::class.java)
-        val simpanData: Call<ResponseModel> = ardData.ardCreateData(nama,alamat,telepon,panjang,lebar,bahan,ketebalan,kode_desain,status_pesanan,nilai_lat,nilai_lng)
+        val simpanData: Call<ResponseModel> = ardData.ardCreateData(nama,alamat,telepon,panjang,lebar,bahan,ketebalan,kode_desain,status_pesanan,nilai_lat,nilai_lng,biaya)
         simpanData.enqueue(object : Callback<ResponseModel> {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val kode = response.body()?.kode
-                val pesan = "Pesanan berhasil ditambahkan"
+                val pesan = "Pesanan berhasil ditambahkan dengan biaya: $biaya"
                 Toast.makeText(this@TambahActivity, " $pesan", Toast.LENGTH_LONG).show()
             }
 

@@ -89,10 +89,11 @@
 
             <Button
                 android:id="@+id/bt_cekLoc"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="Cek" />
+                android:drawableLeft="@drawable/clip_location_on"
+                android:text="Lokasi" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
