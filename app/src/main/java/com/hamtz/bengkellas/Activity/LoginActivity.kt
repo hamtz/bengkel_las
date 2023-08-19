@@ -30,26 +30,26 @@ class LoginActivity : AppCompatActivity() {
         val etUsername = findViewById<EditText>(R.id.et_username)
         val etPassword = findViewById<EditText>(R.id.et_password)
 
-        tampilData.enqueue(object : Callback<ResponseUserModel>{
-            override fun onResponse(call: Call<ResponseUserModel>,response: Response<ResponseUserModel>) {
-                val kode = response.body()?.kode
-                val pesan = response.body()?.pesan
-//                val pesan = "Belum Ada Pesanan"
-                val listUser = response.body()?.data
-
-                varUsername = listUser?.get(0)?.username.toString()
-                varPassword = listUser?.get(0)?.password.toString()
-                varRole = listUser?.get(0)?.role!!
-
-//                Toast.makeText(this@LoginActivity, "Kode :$kode| Pesan : $pesan | $varUsername | $varPassword | $varRole", Toast.LENGTH_LONG).show()
-
-            }
-
-            override fun onFailure(call: Call<ResponseUserModel>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
+//        tampilData.enqueue(object : Callback<ResponseUserModel>{
+//            override fun onResponse(call: Call<ResponseUserModel>,response: Response<ResponseUserModel>) {
+//                val kode = response.body()?.kode
+//                val pesan = response.body()?.pesan
+////                val pesan = "Belum Ada Pesanan"
+//                val listUser = response.body()?.data
+//
+//                varUsername = listUser?.get(0)?.username.toString()
+//                varPassword = listUser?.get(0)?.password.toString()
+//                varRole = listUser?.get(0)?.role!!
+//
+////                Toast.makeText(this@LoginActivity, "Kode :$kode| Pesan : $pesan | $varUsername | $varPassword | $varRole", Toast.LENGTH_LONG).show()
+//
+//            }
+//
+//            override fun onFailure(call: Call<ResponseUserModel>, t: Throwable) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
 
 
         val btLogin=findViewById<Button>(R.id.bt_login)
@@ -64,9 +64,10 @@ class LoginActivity : AppCompatActivity() {
             }
             LoginUserManager.username = username
 
-            var getUsername = varUsername
+//            var getUsername = varUsername
 
-            if (username == getUsername){
+//            if (username == getUsername){
+            if (username.equals("Admin",ignoreCase = true)){
                 Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
 //                Toast.makeText(this@LoginActivity, "Username: $varUsername |Password: $varPassword |Role: $varRole", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,MainActivity::class.java)
@@ -74,7 +75,8 @@ class LoginActivity : AppCompatActivity() {
                 finish()
                 startActivity(intent)
 
-            }else if (username == "user"){
+//            }else if (username == "user"){
+            }else if (username.equals("User",ignoreCase = true)){
                 Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,MainActivity::class.java)
 //                intent.putExtra("userrole","USER")

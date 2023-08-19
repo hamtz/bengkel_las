@@ -156,7 +156,7 @@ class TambahActivity : AppCompatActivity() {
             ketebalan = spKetebalan.selectedItem.toString()
             kode_desain = spDesain.selectedItem.toString()
             status_pesanan = "0"
-            var biaya = getBiaya().toString()
+
             
 //            nilai_lat = valueLat.toString()
 //            nilai_lng = valueLng.toString()
@@ -165,11 +165,11 @@ class TambahActivity : AppCompatActivity() {
                 etNama.error = "Nama Harus Diisi"
             } else if (alamat.isEmpty()) {
                 etAlamat.error = "Alamat Harus Diisi"
-            } else if (telepon.toString().isEmpty()) {
+            } else if (telepon.isEmpty()) {
                 etTelepon.error = "No.hp Harus Diisi"
-            } else if (panjang.toString().isEmpty()) {
+            } else if (panjang.isEmpty()) {
                 etPanjang.error = "isi Panjang (cm)"
-            } else if (lebar.toString().isEmpty()) {
+            } else if (lebar.isEmpty()) {
                 etLebar.error = "isi Panjang (cm)"
 //           }else if(spBahan.toString().isEmpty()){
 //               spBahan.selectedItem. ="isi Panjang (cm)"
@@ -178,6 +178,7 @@ class TambahActivity : AppCompatActivity() {
 //           }else if(spDesain.toString().isEmpty()){
 //               etLebar.error="isi lebar (cm)"
             } else {
+                var biaya = getBiaya().toString()
 
                 createData(nama, alamat, telepon, panjang, lebar, bahan, ketebalan, kode_desain,status_pesanan,nilai_lat,nilai_lng,biaya)
                 finish()
@@ -250,7 +251,7 @@ class TambahActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
                 val pesan = "gagal menghubungi server " + t.message
-                Toast.makeText(this@TambahActivity, pesan, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TambahActivity, "$pesan", Toast.LENGTH_LONG).show()
 
             }
 
