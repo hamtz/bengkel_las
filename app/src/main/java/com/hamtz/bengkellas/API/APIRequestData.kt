@@ -10,6 +10,14 @@ interface APIRequestData {
     @GET("retrieve_user.php")
     fun apiRetrieveUserData(): Call<ResponseUserModel>
 
+    @FormUrlEncoded
+    @POST("register.php")
+    fun ardRegisterUser(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("user_role") role: String,
+    ):Call<ResponseUserModel>
+
     @GET("retrieve.php")
     fun ardRetrieveData(): Call<ResponseModel>
 

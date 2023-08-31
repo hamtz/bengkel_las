@@ -37,21 +37,27 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.hamtz.bengkellas.R.layout.activity_main)
+        val getIntentUsername:String = intent.getStringExtra("usernamelogin").toString()
+        val getIntentUserRole:String = intent.getStringExtra("userrole").toString()
+//        val getIntentUserRole:Int = intent.getIntExtra("userrole",0)
+//        val username = LoginUserManager.username
+        val userRole = getIntentUsername
+//        val btListPesanan=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_listPesanan)
+        val btOrderPesanan=findViewById<Button>(R.id.bt_order)
 
-        val username = LoginUserManager.username
-        val btListPesanan=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_listPesanan)
-
-        if (username.equals("Admin", ignoreCase = true)){
-            btListPesanan.visibility = View.GONE
+//        Toast.makeText(this, "name $getIntentUsername role $getIntentUserRole ", Toast.LENGTH_SHORT ).show()
+        if (getIntentUsername.equals("Admin", ignoreCase = true)){
+//        if (getIntentUserRole == 1){
+            btOrderPesanan.visibility = View.GONE
         }else{
-            btListPesanan.visibility = View.GONE
+            btOrderPesanan.visibility = View.VISIBLE
         }
 
         val ibUser = findViewById<ImageView>(R.id.ib_user)
         Glide.with(this).load(R.drawable.person).circleCrop().into(ibUser)
         ibUser.setOnClickListener{
             val intent = Intent(this,UserActivity::class.java)
-            intent.putExtra("userrole",username)
+            intent.putExtra("userrole",getIntentUsername)
 //            startActivity(intent,REQUEST_LOGOUT)
 //            startActivityForResult(intent, REQUEST_LOGOUT)
             startActivityIfNeeded(intent, REQUEST_LOGOUT)
@@ -65,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ProdukActivity::class.java)
             startActivity(intent)
         }
-        val btOrder=findViewById<Button>(com.hamtz.bengkellas.R.id.bt_order)
+        val btOrder=findViewById<Button>(R.id.bt_order)
         btOrder.setOnClickListener {
             val intent = Intent(this, TambahActivity::class.java)
             startActivity(intent)
